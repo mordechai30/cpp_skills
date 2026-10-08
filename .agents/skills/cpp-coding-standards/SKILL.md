@@ -7,7 +7,7 @@ metadata:
 
 # C++ Coding Standards (C++ Core Guidelines)
 
-Apply the [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) where they fit the project. First check the required C++ standard, local style, and exception policy. Use C++20 or newer features only when supported.
+Apply the [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) where they fit the project. First check the required C++ standard, local style, and exception policy. Always use C++20 or newer instead of older language standards.
 
 ## When to Use
 

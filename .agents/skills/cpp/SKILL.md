@@ -23,10 +23,13 @@ Check the project standard, compiler, standard library, and style policy before 
 ## Memory Management
 
 ### Smart Pointers
+- **Do not use raw pointers for object/array creation.** 
+- Do not use manual `new`/`delete`, `malloc`/`free`, C arrays, or C-string interfaces.
 - Use `std::unique_ptr` for exclusive ownership
+- Use `std::make_unique` over direct use of `new` for `std::unique_ptr` whenever possible
 - Use `std::shared_ptr` only when shared ownership is required
+- Use `std::make_shared` over direct use of `new` for `std::shared_ptr` whenever possible
 - Use `std::weak_ptr` to break circular references
-- Avoid raw owning pointers
 
 ### RAII (Resource Acquisition Is Initialization)
 - Use RAII for all resource management
@@ -36,23 +39,19 @@ Check the project standard, compiler, standard library, and style policy before 
 
 ### Best Practices
 - Prefer stack allocation over heap allocation
-- Use `std::make_unique` and `std::make_shared`
-- Avoid `new` and `delete` in application code
 - Use containers instead of raw arrays
 
 ## Modern C++ Features
 
-### C++17 Features
 - Use structured bindings for tuple unpacking
 - Use `std::optional` for values that may not exist
 - Use `std::variant` for type-safe unions
 - Use `if constexpr` for compile-time conditionals
 - Use `std::string_view` for non-owning string references
+- Use `std::span` for non-owning array/vector views
 
-### C++20 Features
 - Use concepts for template constraints
 - Use ranges for cleaner algorithms
-- Use `std::span` for non-owning array views
 - Use coroutines for asynchronous operations
 - Use modules for faster compilation (when supported)
 
@@ -76,10 +75,12 @@ Check the project standard, compiler, standard library, and style policy before 
 ## Security
 
 ### Buffer Safety
-- Use `std::array` instead of C-style arrays
+- Use `std::array` or `std::vector` instead of C-style arrays
 - Use `std::vector`; use `.at()` or verified library hardening when bounds checks are required
-- Prefer `std::string` over C-style strings
-- Use `std::span` for array views
+- Prefer `std::string` over C-style string
+- Use `std::string_view` for function parameters that accept read-only string data such as a C-style string, or `std::string`
+- Use `std::span` for function parameters that accept read-only array or vector or C-style arrays.
+- Store string(as member) as `std::string` instead of C-style string
 
 ### Type Safety
 - Avoid C-style casts; use `static_cast`, `dynamic_cast`, etc.
